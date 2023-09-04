@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 
 
 def logar(request):
@@ -13,3 +13,7 @@ def logar(request):
     return render(request, "autenticacao/logar.html", {
         'frm': frm
     })
+
+def deslogar(request):
+    logout(request)
+    return redirect('login')

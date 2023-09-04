@@ -9,5 +9,10 @@
 </head>
 <body>
     <h1>Página do usuário</h1>
+    <p>Seja bem vindo {{ user.username }}</p>
+    <p>Seu e-mail: {{ user.email }}</p>
+    <p>Sua senha: {{ user.password }}</p>
+
+    <a href='{% url 'deslogar' %}'>Deslogar</a>
 </body>
 </html>
