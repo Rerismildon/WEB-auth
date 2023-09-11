@@ -1,6 +1,9 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout
+from django.contrib.auth.decorators import login_required
+
+from AulaWeb.forms import TrocarSenhaForm
 
 
 def logar(request):
@@ -14,6 +17,19 @@ def logar(request):
         'frm': frm
     })
 
+@login_required
 def deslogar(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def trocar_senha(request):
+    form = TrocarSenhaForm(request.POST or None)
+    if form.is_valid():
+        request.user.set_password(form.cleaned_data['senha'])
+        request.user.save()
+        return redirect('home')
+
+    return render(request, 'autenticacao/trocar_senha.html',{
+          'frm':form
+    })

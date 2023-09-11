@@ -1,0 +1,21 @@
+{% load widget_tweaks %}
+<html>
+    <head>
+        <title>Trocar Senha</title>
+    <body>
+        <h1>Trocar senha de {{user.username}}</h1>
+        <form method='POST'>
+            {% csrf_token %}
+
+            <p>
+                Senha: {{ frm.senha }}
+            </p>
+
+            <p>
+                Confirmar Senha: {{ frm.conf_senha }}
+            </p>
+
+            <button type='submit'>Alterar</button>
+        </form>
+    </body>
+</html>
